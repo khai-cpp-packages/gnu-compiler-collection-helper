@@ -21,5 +21,7 @@
 	"homepage": {
 		"url": "https://github.com/khai-cpp-packages/gnu-compiler-collection-helper#readme"
 	},
-	"scripts": {}
+	"scripts": {
+		"test": "node --es-staging ./test/main.js"
+	}
 }
