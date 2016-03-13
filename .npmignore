@@ -1,0 +1,9 @@
+*.o
+*.out
+*.exe
+*.obj
+*.res
+test
+quick-test
+out
+.gitignore
