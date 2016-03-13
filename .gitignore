@@ -7,5 +7,4 @@ quick-test/*
 !quick-test/*.md
 out/*
 !out/*.md
-node_modules/*
-!node_modules/readme.md
+node_modules
