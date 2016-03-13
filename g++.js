@@ -17,7 +17,7 @@
 
 	module.exports = {
 		'compile': compile,
-		'__proto__': require('./flags/g++.js')
+		'__proto__': require('./flags/GCC.js')
 	};
 
 })(module);
