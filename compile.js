@@ -12,7 +12,7 @@
 	var collection = Object.create(null);
 
 	var execute = (compiler, flags, output, input, options) =>
-		spawnSync(compiler, [...flags, `-o`, `"${output}"`, ...input]);
+		spawnSync(compiler, [...flags, `-o`, `"${output}"`, ...input], options);
 
 	var create = (compiler) => {
 
