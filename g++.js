@@ -9,10 +9,15 @@
 	const DEFAULT_FLAGS = freeze(['-Wall', '-Wextra']);
 	const DEFAULT_OUTPUT = 'compiled-binary.out';
 
-	var compile = (flags, output, input, options) =>
+	var _compile = (flags, output, input, options) =>
 		spawnSync(COMPILER, [...flags, `-o`, `"${output}"`, ...input]);
 
-	module.exports = (flags, output, input, options) =>
-		compile(flags || DEFAULT_FLAGS, output || DEFAULT_OUTPUT, typeof input === 'object' ? input : [input || 'main.cpp'], options);
+	var compile = (flags, output, input, options) =>
+		_compile(flags || DEFAULT_FLAGS, output || DEFAULT_OUTPUT, typeof input === 'object' ? input : [input || 'main.cpp'], options);
+
+	module.exports = {
+		'compile': compile,
+		'__proto__': require('./flags/g++.js')
+	};
 
 })(module);
