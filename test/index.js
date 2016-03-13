@@ -16,7 +16,6 @@
 		let compile_result = gnu.cplusplus(['-Wall', '-Wextra', gnu.cplusplus.INCLUDE('./include')], './main.exe', './main.cpp');
 		throwIf(compile_result.error);
 		throwIf(compile_result.stderr);
-		test_result.out = String(compile_result.stdout);
 		let execute_result = child_process.spawnSync('./main.exe');
 		test_result.stdout = execute_result.stdout;
 		test_result.stderr = execute_result.stderr;
