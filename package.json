@@ -3,7 +3,7 @@
 	"name": "gnu-compiler-collection-helper",
 	"description": "",
 	"main": "index.js",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
 	"contributors": [
 		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
