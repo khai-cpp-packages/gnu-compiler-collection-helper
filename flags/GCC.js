@@ -3,7 +3,7 @@
 	'use strict';
 
 	module.exports = Object.freeze({
-		'STANDARD': (standard) => `std=${standard}`,
+		'STANDARD': (standard) => `-std=${standard}`,
 		'OPTIMIZE': (level) => `-O{level}`,
 		'INCLUDE': (...dirs) => dirs.map((dir) => `-I${dir}`),
 		'DEBUG': '-g',
