@@ -1,0 +1,25 @@
+
+{
+	"name": "gnu-compiler-collection-helper",
+	"description": "",
+	"main": "index.js",
+	"version": "0.0.0",
+	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
+	"contributors": [
+		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/khai-cpp-packages/gnu-compiler-collection-helper.git"
+	},
+	"engines": {
+		"node": ">= 5.0.0"
+	},
+	"bugs": {
+		"url": "https://github.com/khai-cpp-packages/gnu-compiler-collection-helper/issues"
+	},
+	"homepage": {
+		"url": "https://github.com/khai-cpp-packages/gnu-compiler-collection-helper#readme"
+	},
+	"scripts": {}
+}
