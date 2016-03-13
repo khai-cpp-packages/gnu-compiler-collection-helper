@@ -9,7 +9,7 @@
 		'DEBUG': '-g',
 		'GENERATE_OBJECT': '-c',
 		'GENERATE_ASSEMBLY': '-S',
-		'__proto__': null
+		__proto__() {}
 	});
 
 })(module);
