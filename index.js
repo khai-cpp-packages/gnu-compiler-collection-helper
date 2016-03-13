@@ -3,7 +3,7 @@
 	'use strict';
 
 	module.exports = {
-		'cplusplus': require('./g++'),
+		'cplusplus': require('./g++.js'),
 		'__proto__': null
 	};
 
