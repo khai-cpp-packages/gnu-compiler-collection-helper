@@ -10,11 +10,11 @@
 	console.log(test_result.version);
 
 	if (test_result.error) {
-		process.stderr.write(`TEST FAILED\n${test_result.error}\n`);
+		process.stderr.write(`\nTEST FAILED\n\n${test_result.error}\n`);
 	} else {
-		process.stdout.write(`TEST SUCCEED\n`);
-		process.stdout.write(`\x1B[32mprocess.stdout:\x1B[0m\n${test_result.stdout}\n`);
-		process.stdout.write(`\x1B[32mprocess.stderr:\x1B[0m\n${test_result.stderr}\n`);
+		process.stdout.write(`\nTEST SUCCEED\n\n`);
+		process.stdout.write(`\x1B[32mprocess.stdout:\x1B[0m\n${test_result.stdout}\n\n`);
+		process.stdout.write(`\x1B[32mprocess.stderr:\x1B[0m\n${test_result.stderr}\n\n`);
 	}
 
 })();

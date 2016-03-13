@@ -13,9 +13,14 @@
 		let throwIf = (error) => {
 			if (error) throw error;
 		};
-		let compile_result = gnu.cplusplus(['-Wall', '-Wextra', gnu.cplusplus.INCLUDE('./include')], './main.exe', './main.cpp');
+		let flags = [
+			'-Wall', '-Wextra',
+			gnu.cplusplus.INCLUDE('./include'),
+			gnu.cplusplus.STANDARD('c++14')
+		];
+		let compile_result = gnu.cplusplus(flags, './main.exe', './main.cpp');
 		throwIf(compile_result.error);
-		throwIf(compile_result.stderr);
+		throwIf(String(compile_result.stderr));
 		let execute_result = child_process.spawnSync('./main.exe');
 		test_result.stdout = execute_result.stdout;
 		test_result.stderr = execute_result.stderr;
