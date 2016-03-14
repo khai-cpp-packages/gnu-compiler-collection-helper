@@ -22,8 +22,6 @@
 		"url": "https://github.com/khai-cpp-packages/gnu-compiler-collection-helper#readme"
 	},
 	"scripts": {
-		"test-async": "node --es-staging ./test/async/main.js",
-		"test-sync": "node --es-staging ./test/sync/main.js",
-		"test": "npm test-async; npm test-sync"
+		"test": "node --es-staging ./test/main.js"
 	}
 }
