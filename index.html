@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gnu-compiler-collection-helper by khai-cpp-packages</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/khai-cpp-packages/gnu-compiler-collection-helper">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/khai-cpp-packages/gnu-compiler-collection-helper/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/khai-cpp-packages/gnu-compiler-collection-helper/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Gnu-compiler-collection-helper</h1>
+          <p>NodeJS tools for GCC</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/khai-cpp-packages">khai-cpp-packages</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="gnu-compiler-collection-helper" class="anchor" href="#gnu-compiler-collection-helper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>gnu-compiler-collection-helper</h1>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li><p>Node &gt;= 5.0.0, with flag <code>--es-staging</code></p></li>
+<li><p>GCC &gt;= 4.0.0</p></li>
+</ul>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<h3>
+<a id="asynchronous-compilation" class="anchor" href="#asynchronous-compilation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Asynchronous compilation</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> compile <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gnu-compiler-collection-helper/g++<span class="pl-pds">'</span></span>);
+<span class="pl-k">new</span> <span class="pl-en">Promise</span>((<span class="pl-smi">resolve</span>, <span class="pl-smi">reject</span>) <span class="pl-k">=&gt;</span> {
+    <span class="pl-k">var</span> child_process <span class="pl-k">=</span> <span class="pl-en">compile</span>([<span class="pl-s"><span class="pl-pds">'</span>-Wall<span class="pl-pds">'</span></span>]. <span class="pl-s"><span class="pl-pds">'</span>hello-world.exe<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>hello-world.cpp<span class="pl-pds">'</span></span>);
+    <span class="pl-k">var</span> stderr <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>;
+    <span class="pl-smi">child_process</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, reject);
+    <span class="pl-smi">child_process</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>exit<span class="pl-pds">'</span></span>, () <span class="pl-k">=&gt;</span> stderr <span class="pl-k">?</span> <span class="pl-en">reject</span>(stderr) <span class="pl-k">:</span> <span class="pl-en">resolve</span>());
+    <span class="pl-smi">child_process</span>.<span class="pl-smi">stderr</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>data<span class="pl-pds">'</span></span>, (<span class="pl-smi">chunk</span>) <span class="pl-k">=&gt;</span> stderr <span class="pl-k">+=</span> chunk);
+}).<span class="pl-en">then</span>(
+    () <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Compile successful<span class="pl-pds">'</span></span>),
+    (<span class="pl-smi">error</span>) <span class="pl-k">=&gt;</span> <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">`</span>Compile failed<span class="pl-cce">\n</span><span class="pl-s1"><span class="pl-pse">${</span>error<span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>)
+);</pre></div>
+
+<h3>
+<a id="synchronous-compilation" class="anchor" href="#synchronous-compilation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Synchronous compilation</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> compile <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>gnu-compiler-collection-helper/g++-sync<span class="pl-pds">'</span></span>);
+<span class="pl-k">try</span> {
+    <span class="pl-k">let</span> result <span class="pl-k">=</span> <span class="pl-en">compile</span>([<span class="pl-s"><span class="pl-pds">'</span>-Wall<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>hello-world.exe<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>hello-world.cpp<span class="pl-pds">'</span></span>);
+    <span class="pl-k">if</span> (<span class="pl-smi">result</span>.<span class="pl-smi">stderr</span>) <span class="pl-k">throw</span> <span class="pl-smi">result</span>.<span class="pl-smi">stderr</span>;
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>Compile successful<span class="pl-pds">'</span></span>);
+} <span class="pl-k">catch</span> (error) {
+    <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">`</span>Compile failed<span class="pl-cce">\n</span><span class="pl-s1"><span class="pl-pse">${</span>error<span class="pl-pse">}</span></span><span class="pl-pds">`</span></span>);
+};</pre></div>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
