@@ -3,11 +3,11 @@
 	'use strict';
 
 	var child_process = require('child_process');
-	var gnu = require('..');
+	var compile = require('../../g++-sync.js');
 
 	var test_result = Object.create(null);
 
-	test_result.version = gnu.cplusplus.version();
+	test_result.version = compile.version();
 
 	try {
 		let throwIf = (error) => {
@@ -15,10 +15,10 @@
 		};
 		let flags = [
 			'-Wall', '-Wextra',
-			gnu.cplusplus.INCLUDE('./include'),
-			gnu.cplusplus.STANDARD('c++14')
+			compile.INCLUDE('./include'),
+			compile.STANDARD('c++14')
 		];
-		let compile_result = gnu.cplusplus(flags, './main.exe', './main.cpp');
+		let compile_result = compile(flags, './main.exe', './main.cpp');
 		throwIf(compile_result.error);
 		throwIf(String(compile_result.stderr));
 		let execute_result = child_process.spawnSync('./main.exe');
