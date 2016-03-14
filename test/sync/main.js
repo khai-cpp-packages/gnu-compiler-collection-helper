@@ -15,7 +15,8 @@
 			[
 				`\n\x1B[97m\x1B[1mTEST SUCCEED\x1B[0m\n\n`,
 				`\x1B[32mprocess.stdout:\x1B[0m\n${test_result.stdout}\n`,
-				`\x1B[32mprocess.stderr:\x1B[0m\n${test_result.stderr}\n`
+				`\x1B[32mprocess.stderr:\x1B[0m\n${test_result.stderr}\n`,
+				`\x1B[32mprocess.status:\x1B[0m\t${test_result.status}\n`
 			].forEach((message) => process.stdout.write(message));
 		}
 	};

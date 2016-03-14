@@ -24,6 +24,7 @@
 		let execute_result = child_process.spawnSync('./main.exe');
 		test_result.stdout = execute_result.stdout;
 		test_result.stderr = execute_result.stderr;
+		test_result.status = execute_result.status;
 	} catch (error) {
 		test_result.error = error;
 	}
