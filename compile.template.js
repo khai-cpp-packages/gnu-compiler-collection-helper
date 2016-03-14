@@ -12,10 +12,7 @@
 	const GET_VERSION = freeze(['--version']);
 	const UTF8 = freeze({encoding: 'utf8'});
 
-	var create = (spawn) => {
-
-		var createGetInfo = (compiler, args) =>
-			() => String(spawn(compiler, args, UTF8).stdout);
+	var create = (spawn, info) => {
 
 		var collection = Object.create(null);
 
@@ -29,8 +26,8 @@
 
 			setproto(result, {
 				name: () => compiler,
-				help: createGetInfo(compiler, GET_HELP),
-				version: createGetInfo(compiler, GET_VERSION),
+				help: info(compiler, GET_HELP),
+				version: info(compiler, GET_VERSION),
 				__proto__: require('./flags/GCC.js')
 			});
 
