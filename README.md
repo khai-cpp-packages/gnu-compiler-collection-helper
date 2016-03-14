@@ -10,7 +10,7 @@
 ## Examples
 
 ```javascript
-var compile = require('gnu-compiler-collection-helper/g++');
+var compile = require('gnu-compiler-collection-helper/g++-sync');
 try {
 	let result = compile(['-Wall'], 'hello-world.exe', 'hello-world.cpp');
 	if (result.stderr) throw result.stderr;
