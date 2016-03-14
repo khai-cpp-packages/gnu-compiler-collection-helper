@@ -10,7 +10,6 @@
 
 	const GET_HELP = freeze(['--help']);
 	const GET_VERSION = freeze(['--version']);
-	const UTF8 = freeze({encoding: 'utf8'});
 
 	var create = (spawn, info) => {
 
