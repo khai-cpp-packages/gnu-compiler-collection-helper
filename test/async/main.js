@@ -3,9 +3,11 @@
 	'use strict';
 
 	process.chdir(__dirname);
-	console.log('\x1B[36mTESTING:\x1B[0m g++-async');
 
-	setTimeout(() => require('.').then(onCompileSuccess, onCompileFail));
+	setTimeout(() => {
+		console.log('\x1B[36mTESTING:\x1B[0m g++-async');
+		require('.').then(onCompileSuccess, onCompileFail);
+	});
 
 	var onCompileSuccess = (child) => {
 		[
