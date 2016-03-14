@@ -19,8 +19,16 @@
 
 		child.on('exit', () => {
 			var child = spawn('./main.exe');
+			var stdout = '', stderr = '';
 			child.on('error', reject);
-			child.on('exit', () => resolve(child));
+			child.on('exit', (status) => resolve({
+				'stdout': stdout,
+				'stderr': stderr,
+				'status': status,
+				'__proto__': child
+			}));
+			child.stdout.on('data', (chunk) => stdout += chunk);
+			child.stderr.on('data', (chunk) => stderr += chunk);
 		});
 
 		child.on('error', reject);
