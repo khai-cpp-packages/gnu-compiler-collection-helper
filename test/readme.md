@@ -7,7 +7,7 @@ This folder contains tester of this project
 
 ## Requirements
 
-Node >= 5.0.0, with flag `--es-staging`
+Satify [this project's requirements](../README.md#requirements)
 
 ## Usage
 

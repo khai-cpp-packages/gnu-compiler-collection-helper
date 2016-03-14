@@ -2,19 +2,34 @@
 (() => {
 	'use strict';
 
+	var spawn = require('child_process').spawn;
+
 	process.chdir(__dirname);
-	console.log('Testing: gnu-compiler-collection-helper');
 
-	var test_result = require('.');
+	var createTestCaller = (type) => (resolve) => setTimeout(() => {
 
-	console.log(test_result.version);
+		var sync = spawn('node', ['--es-staging', `./${type.toLowerCase()}/main.js`]);
 
-	if (test_result.error) {
-		process.stderr.write(`\nTEST FAILED\n\n${test_result.error}\n`);
-	} else {
-		process.stdout.write(`\nTEST SUCCEED\n\n`);
-		process.stdout.write(`\x1B[32mprocess.stdout:\x1B[0m\n${test_result.stdout}\n\n`);
-		process.stdout.write(`\x1B[32mprocess.stderr:\x1B[0m\n${test_result.stderr}\n\n`);
-	}
+		sync.on('error', (error) => {
+			process.stderr.write(`TEST ${type.toUpperCase()} FAILED\n${error}\n`);
+			resolve();
+		});
+		sync.on('exit', (status) => {
+			process.stdout.write(`\nTest ${type} exited with status code ${status}${'\n'.repeat(2)}\n`);
+			resolve();
+		});
+		sync.stdout.on('data', (chunk) => process.stdout.write(String(chunk)));
+		sync.stderr.on('data', (chunk) => process.stderr.write(String(chunk)));
+
+	});
+
+	var test = (type) =>
+		new Promise(createTestCaller(type));
+
+	Promise.all([
+		test('aSync'), test('sync')
+	]).then(() => {
+		process.stdout.write(`${'\n'.repeat(3)}All tests finished.${'\n'.repeat(3)}`);
+	});
 
 })();
