@@ -3,6 +3,7 @@
 *.exe
 *.obj
 *.res
+*.log
 quick-test/*
 !quick-test/*.md
 out/*
