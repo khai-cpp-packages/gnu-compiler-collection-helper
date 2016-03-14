@@ -1,0 +1,10 @@
+
+{
+	"engines": {
+		"node": ">= 5.0.0"
+	},
+	"dependencies": {},
+	"scripts": {
+		"test": "node --es-staging ./main.js"
+	}
+}
