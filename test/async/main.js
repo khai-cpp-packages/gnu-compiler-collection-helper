@@ -5,7 +5,7 @@
 	process.chdir(__dirname);
 
 	setTimeout(() => {
-		console.log(`${'\n'.repeat(2)}\x1B[36mTESTING:\x1B[0m g++-async`);
+		console.log(`${'\n'.repeat(3)}\x1B[36mTESTING:\x1B[0m g++-async`);
 		require('.').then(onCompileSuccess, onCompileFail);
 	});
 
